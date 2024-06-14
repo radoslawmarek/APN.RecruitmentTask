@@ -10,4 +10,9 @@
     <ProjectReference Include="..\APN.RecruitmentTask.Domain\APN.RecruitmentTask.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
 </Project>

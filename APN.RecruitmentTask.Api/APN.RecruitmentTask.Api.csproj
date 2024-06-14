@@ -9,8 +9,10 @@
   <ItemGroup>
     <ProjectReference Include="..\APN.RecruitmentTask.Application\APN.RecruitmentTask.Application.csproj" />
     <ProjectReference Include="..\APN.RecruitmentTask.Contracts\APN.RecruitmentTask.Contracts.csproj" />
-    <ProjectReference Include="..\APN.RecruitmentTask.Domain\APN.RecruitmentTask.Domain.csproj" />
-    <ProjectReference Include="..\APN.RecruitmentTask.Infrastructure\APN.RecruitmentTask.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
 </Project>
