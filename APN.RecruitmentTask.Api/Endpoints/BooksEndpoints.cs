@@ -3,6 +3,7 @@ using APN.RecruitmentTask.Application.Books.Queries;
 using APN.RecruitmentTask.Contracts.ApiContracts.Books;
 using APN.RecruitmentTask.Domain.Book;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APN.RecruitmentTask.Api.Endpoints;
@@ -13,7 +14,7 @@ public static class BooksEndpoints
 
     public static void AddBooksEndpoints(this WebApplication application)
     {
-        application.MapGet("/api/books", async ([FromServices] IMediator mediator) =>
+        application.MapGet("/api/books", [Authorize] async ([FromServices] IMediator mediator) =>
             {
                 var result = await mediator.Send(new GetBooksQuery());
                 result.Match(
@@ -26,7 +27,7 @@ public static class BooksEndpoints
             .WithTags(EndpointTags)
             .Produces<IEnumerable<BookQueryResult>>();
         
-        application.MapPost("/api/books", async ([FromServices] IMediator mediator, [FromBody] CreateBookRequest request) =>
+        application.MapPost("/api/books", [Authorize] async ([FromServices] IMediator mediator, [FromBody] CreateBookRequest request) =>
             {
                 var result = await mediator.Send(new AddBookCommand(request.Title, 
                     request.Price, 

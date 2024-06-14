@@ -1,0 +1,5 @@
+### Get list of books
+GET {{hostUrl}}/api/books
+Authorization: Bearer {{bearerToken}}
+Accept: application/json
+
