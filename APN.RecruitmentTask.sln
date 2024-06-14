@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Api", "APN.RecruitmentTask.Api\APN.RecruitmentTask.Api.csproj", "{E377C512-61B7-4F7B-B65C-D6E152C3C74A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Application", "APN.RecruitmentTask.Application\APN.RecruitmentTask.Application.csproj", "{51E345AF-AD35-4D22-970C-15F0959B1D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Contracts", "APN.RecruitmentTask.Contracts\APN.RecruitmentTask.Contracts.csproj", "{F1CBAA7B-9C66-46D1-993F-2CF919158CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Domain", "APN.RecruitmentTask.Domain\APN.RecruitmentTask.Domain.csproj", "{9F95C046-6512-402B-866D-C38C46B40891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Infrastructure", "APN.RecruitmentTask.Infrastructure\APN.RecruitmentTask.Infrastructure.csproj", "{9F382CE3-20B0-479E-AFBA-F20E624AF8E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Tests", "APN.RecruitmentTask.Tests\APN.RecruitmentTask.Tests.csproj", "{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E377C512-61B7-4F7B-B65C-D6E152C3C74A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E377C512-61B7-4F7B-B65C-D6E152C3C74A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E377C512-61B7-4F7B-B65C-D6E152C3C74A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E377C512-61B7-4F7B-B65C-D6E152C3C74A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E345AF-AD35-4D22-970C-15F0959B1D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E345AF-AD35-4D22-970C-15F0959B1D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E345AF-AD35-4D22-970C-15F0959B1D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E345AF-AD35-4D22-970C-15F0959B1D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1CBAA7B-9C66-46D1-993F-2CF919158CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1CBAA7B-9C66-46D1-993F-2CF919158CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1CBAA7B-9C66-46D1-993F-2CF919158CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1CBAA7B-9C66-46D1-993F-2CF919158CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F95C046-6512-402B-866D-C38C46B40891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F95C046-6512-402B-866D-C38C46B40891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F95C046-6512-402B-866D-C38C46B40891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F95C046-6512-402B-866D-C38C46B40891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F382CE3-20B0-479E-AFBA-F20E624AF8E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F382CE3-20B0-479E-AFBA-F20E624AF8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F382CE3-20B0-479E-AFBA-F20E624AF8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F382CE3-20B0-479E-AFBA-F20E624AF8E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
