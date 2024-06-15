@@ -5,10 +5,19 @@ using ErrorOr;
 
 namespace APN.RecruitmentTask.Application.Books.Commands;
 
-public class AddBookCommandHandler(IBooksRepository booksRepository, IUniqueIdGenerator<int> idGenerator): IRequestHandler<AddBookCommand, ErrorOr<int>>
+public class AddBookCommandHandler(IBooksRepository booksRepository, IUniqueIdGenerator<int> idGenerator, AddBookCommandValidator commandValidator): IRequestHandler<AddBookCommand, ErrorOr<int>>
 {
     public async Task<ErrorOr<int>> Handle(AddBookCommand request, CancellationToken cancellationToken)
     {
+        var validationResult = await commandValidator.ValidateAsync(request, cancellationToken);
+        if (validationResult.IsValid is false)
+        {
+            return Error.Validation(
+                code: $"{nameof(AddBookCommandHandler)}.ValidationFailed",
+                description: string.Join(" ", validationResult.Errors.Select(x => x.ErrorMessage))
+                );
+        }
+        
         var id = await idGenerator.GenerateUniqueId("book", cancellationToken);
         var existingBookResult = await booksRepository.GetBook(id, cancellationToken);
 

@@ -21,3 +21,22 @@ Accept: application/json
     }
   ]
 }
+
+### Test validation on adding book
+POST {{hostUrl}}/api/books
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Zrób sam małą szklarenkę",
+  "price": 12.98,
+  "bookstand": 3,
+  "shelf": 2,
+  "authors": [
+    {
+      "firstName": "H.J.",
+      "lastName": "Schiffer"
+    }
+  ]
+}
