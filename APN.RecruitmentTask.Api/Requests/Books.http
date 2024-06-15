@@ -3,3 +3,21 @@ GET {{hostUrl}}/api/books
 Authorization: Bearer {{bearerToken}}
 Accept: application/json
 
+### Adds a book
+POST {{hostUrl}}/api/books
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "The Great Gatsby",
+  "price": 10.99,
+  "bookstand": 1,
+  "shelf": 1,
+  "authors": [
+    {
+      "firstName": "F.",
+      "lastName": "Scott Fitzgerald"
+    }
+  ]
+}

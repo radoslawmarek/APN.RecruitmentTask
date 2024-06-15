@@ -17,7 +17,7 @@ public static class BooksEndpoints
         application.MapGet("/api/books", [Authorize] async ([FromServices] IMediator mediator) =>
             {
                 var result = await mediator.Send(new GetBooksQuery());
-                result.Match(
+                return result.Match(
                     bookList => Results.Ok(bookList),
                     errors => Results.BadRequest(string.Join(", ", errors.Select(e => e.Description)))
                 );
@@ -35,7 +35,7 @@ public static class BooksEndpoints
                     request.Shelf, 
                     request.Authors.Select(a => new BookAuthor() {FirstName = a.FirstName, LastName = a.LastName}).ToList()));
                 
-                result.Match(
+                return result.Match(
                     bookId => Results.Created($"/api/books/{bookId}", bookId),
                     errors => Results.BadRequest(string.Join(", ", errors.Select(e => e.Description)))
                 );

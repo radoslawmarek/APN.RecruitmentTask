@@ -11,4 +11,11 @@
     <ProjectReference Include="..\APN.RecruitmentTask.Domain\APN.RecruitmentTask.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Azure.Data.Tables" Version="12.8.3" />
+    <PackageReference Include="Azure.Identity" Version="1.11.4" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.20.0" />
+    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.4" />
+  </ItemGroup>
+
 </Project>

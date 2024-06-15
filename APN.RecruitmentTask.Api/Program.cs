@@ -1,6 +1,7 @@
 using System.Text;
 using APN.RecruitmentTask.Api.Endpoints;
 using APN.RecruitmentTask.Application;
+using APN.RecruitmentTask.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -28,6 +29,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.RegisterInfrastructure(builder.Configuration);
 builder.Services.RegisterApplication();
 
 var app = builder.Build();

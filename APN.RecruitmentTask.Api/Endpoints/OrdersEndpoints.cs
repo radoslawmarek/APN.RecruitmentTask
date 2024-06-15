@@ -15,7 +15,7 @@ public static class OrdersEndpoints
         application.MapGet("/api/orders", [Authorize] async ([FromServices] IMediator mediator) =>
             {
                 var result = await mediator.Send(new GetOrdersQuery());
-                result.Match(
+                return result.Match(
                     orderList => Results.Ok(orderList),
                     errors => Results.BadRequest(string.Join(", ", errors.Select(e => e.Description)))
                 );
