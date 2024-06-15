@@ -51,8 +51,23 @@ public class TableStorageBooksRepository(TableServiceClient tableServiceClient, 
         return book;
     }
 
-    public Task<IEnumerable<Book>> GetBooks(CancellationToken cancellationToken)
+    public async Task<IEnumerable<Book>> GetBooks(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await tableServiceClient.CreateTableIfNotExistsAsync(_settings.BooksTableName, cancellationToken);
+        var tableClient = tableServiceClient.GetTableClient(_settings.BooksTableName);
+        
+        var books = new List<Book>();
+        
+        await foreach (var bookEntity in tableClient.QueryAsync<BookEntity>(filter: $"PartitionKey eq '{PartitionKey}'", cancellationToken: cancellationToken))
+        {
+            var book = JsonSerializer.Deserialize<Book>(bookEntity.BookSerializedToJson);
+            
+            if (book is not null)
+            {
+                books.Add(book);
+            }
+        }
+
+        return books;
     }
 }
