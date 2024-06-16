@@ -23,7 +23,7 @@ var orderLineFaker = new Faker<OrderLineRequest>()
 var orderFaker = new Faker<CreateOrderRequest>()
     .RuleFor(f => f.OrderLines, x => orderLineFaker.Generate(x.Random.Number(1, 100)));
 
-foreach (var order in orderFaker.Generate(1000))
+foreach (var order in orderFaker.Generate(100))
 {
     Console.WriteLine(await AddOrderAsync(httpClientFactory, settings.ApiUrl, settings.ApiToken, order));
 }

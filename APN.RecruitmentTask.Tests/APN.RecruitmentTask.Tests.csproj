@@ -30,4 +30,8 @@
     <ProjectReference Include="..\APN.RecruitmentTask.Infrastructure\APN.RecruitmentTask.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Api\" />
+  </ItemGroup>
+
 </Project>
