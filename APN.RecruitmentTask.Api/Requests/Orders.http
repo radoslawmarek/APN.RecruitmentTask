@@ -3,6 +3,17 @@ GET {{hostUrl}}/api/orders
 Authorization: Bearer {{bearerToken}}
 Accept: application/json
 
+### Gets top 1 orders
+GET {{hostUrl}}/api/orders?top=1
+Authorization: Bearer {{bearerToken}}
+Accept: application/json
+
+### Gets next 1 orders with continuation token
+GET {{hostUrl}}/api/orders?top=1
+Authorization: Bearer {{bearerToken}}
+Accept: application/json
+X-Continuation-Token: T3JkZXJz MDA2YmZmNzUtYjY1Zi00YjkyLTg5NGYtZmJiNDExMDliMjNi
+
 ### Adds order
 POST {{hostUrl}}/api/orders
 Authorization: Bearer {{bearerToken}}

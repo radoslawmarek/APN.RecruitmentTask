@@ -13,6 +13,40 @@ public class TableStorageOrdersRepository(TableServiceClient tableServiceClient,
     TableStorageRepositoryBase(tableServiceClient, options),  IOrdersRepository
 {
     private const string PartitionKey = "Orders";
+
+    public async Task<(IEnumerable<Order> orders, string? continuationToken)> GetOrdersByPage(int top,
+        string? continuationToken, CancellationToken cancellationToken)
+    {
+        var tableClient = await CreateTableClient(AzureSettings.OrdersTableName, cancellationToken);
+
+
+        await using var pageableEnumerator = tableClient.QueryAsync<OrderEntity>(
+                filter: $"PartitionKey eq '{PartitionKey}'",
+                maxPerPage: top, cancellationToken: cancellationToken)
+            .AsPages(continuationToken)
+            .GetAsyncEnumerator(cancellationToken);
+        
+        await pageableEnumerator.MoveNextAsync();
+        var orderEntities = pageableEnumerator.Current.Values
+            .ToList();
+
+        List<Order> orders = new();
+        foreach (var orderEntity in orderEntities)
+        {
+            var order = JsonSerializer.Deserialize<Order>(orderEntity.OrderSerializedToJson);
+
+            if (order is null)
+            {
+                throw new ApplicationException($"Cannot deserialize order with id {orderEntity.RowKey} from JSON.");
+            }
+
+            orders.Add(order);
+        }
+        
+        continuationToken = pageableEnumerator.Current.ContinuationToken;
+
+        return (orders, continuationToken);
+    }
     
     public async Task<IEnumerable<Order>> GetOrders(CancellationToken cancellationToken)
     {
@@ -34,7 +68,7 @@ public class TableStorageOrdersRepository(TableServiceClient tableServiceClient,
         
         return orders;
     }
-
+    
     public async Task<ErrorOr<Order>> GetOrder(Guid id, CancellationToken cancellationToken)
     {
         var tableClient = await CreateTableClient(AzureSettings.OrdersTableName, cancellationToken);
