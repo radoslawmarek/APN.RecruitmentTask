@@ -50,3 +50,6 @@ app.AddBooksEndpoints();
 app.AddOrdersEndpoints();
 
 app.Run();
+
+// Only to make WAF happy
+public partial class Program { }

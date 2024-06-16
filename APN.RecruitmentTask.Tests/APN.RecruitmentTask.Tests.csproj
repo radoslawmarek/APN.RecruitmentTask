@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.5.3" />
@@ -28,10 +29,6 @@
     <ProjectReference Include="..\APN.RecruitmentTask.Contracts\APN.RecruitmentTask.Contracts.csproj" />
     <ProjectReference Include="..\APN.RecruitmentTask.Domain\APN.RecruitmentTask.Domain.csproj" />
     <ProjectReference Include="..\APN.RecruitmentTask.Infrastructure\APN.RecruitmentTask.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Api\" />
   </ItemGroup>
 
 </Project>
