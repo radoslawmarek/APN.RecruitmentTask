@@ -1,3 +1,6 @@
 namespace APN.RecruitmentTask.Contracts.ApiContracts.Orders;
 
-public record CreateOrderRequest(IEnumerable<OrderLineRequest> OrderLines);
+public record CreateOrderRequest
+{
+    public required IEnumerable<OrderLineRequest> OrderLines { get; init; }
+};

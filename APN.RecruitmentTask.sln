@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.Tests", "APN.RecruitmentTask.Tests\APN.RecruitmentTask.Tests.csproj", "{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2817EDC2-139F-4E19-97D1-838676F98E57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APN.RecruitmentTask.OrdersGenerator", "APN.RecruitmentTask.OrdersGenerator\APN.RecruitmentTask.OrdersGenerator.csproj", "{2E653AF5-0D51-4EDB-A5F0-DE6D27A31FED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +52,12 @@ Global
 		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3519CFE6-C5C7-4697-A57C-DE3E0AADCDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E653AF5-0D51-4EDB-A5F0-DE6D27A31FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E653AF5-0D51-4EDB-A5F0-DE6D27A31FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E653AF5-0D51-4EDB-A5F0-DE6D27A31FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E653AF5-0D51-4EDB-A5F0-DE6D27A31FED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E653AF5-0D51-4EDB-A5F0-DE6D27A31FED} = {2817EDC2-139F-4E19-97D1-838676F98E57}
 	EndGlobalSection
 EndGlobal
