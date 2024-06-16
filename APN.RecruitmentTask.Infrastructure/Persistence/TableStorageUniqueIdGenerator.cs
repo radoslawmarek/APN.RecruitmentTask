@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 
 namespace APN.RecruitmentTask.Infrastructure.Persistence;
 
-public class StorageTableUniqueIdGenerator(TableServiceClient tableServiceClient, IOptions<AzureSettings> settings, ILogger<StorageTableUniqueIdGenerator> logger): IUniqueIdGenerator<int>
+public class TableStorageUniqueIdGenerator(TableServiceClient tableServiceClient, IOptions<AzureSettings> settings, ILogger<TableStorageUniqueIdGenerator> logger): IUniqueIdGenerator<int>
 {
     private readonly AzureSettings _settings = settings.Value;
     private const string PartitionKey = "IdGeneration";

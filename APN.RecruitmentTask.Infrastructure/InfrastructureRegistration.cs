@@ -18,7 +18,9 @@ public static class InfrastructureRegistration
         services.AddSingleton(Options.Create(azureSettings));
         
         services.AddTransient<IBooksRepository, TableStorageBooksRepository>();
-        services.AddTransient<IUniqueIdGenerator<int>, StorageTableUniqueIdGenerator>();
+        services.AddTransient<IOrdersRepository, TableStorageOrdersRepository>();
+        services.AddTransient<IUniqueIdGenerator<int>, TableStorageUniqueIdGenerator>();
+        
         services.AddAzureClients(clientBuilder =>
         {
             clientBuilder.AddTableServiceClient("UseDevelopmentStorage=true");

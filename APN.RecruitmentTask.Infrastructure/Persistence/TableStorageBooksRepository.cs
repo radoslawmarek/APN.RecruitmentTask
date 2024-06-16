@@ -4,21 +4,19 @@ using APN.RecruitmentTask.Domain.Book;
 using APN.RecruitmentTask.Infrastructure.Persistence.Model;
 using APN.RecruitmentTask.Infrastructure.Persistence.Settings;
 using Azure.Data.Tables;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ErrorOr;
 
 namespace APN.RecruitmentTask.Infrastructure.Persistence;
 
-public class TableStorageBooksRepository(TableServiceClient tableServiceClient, IOptions<AzureSettings> settings, ILogger<TableStorageBooksRepository> logger): IBooksRepository
+public class TableStorageBooksRepository(TableServiceClient tableServiceClient, IOptions<AzureSettings> settings): 
+    TableStorageRepositoryBase(tableServiceClient, settings), IBooksRepository
 {
-    private readonly AzureSettings _settings = settings.Value;
     private const string PartitionKey = "Books";
     
     public async Task AddBook(Book book, CancellationToken cancellationToken)
     {
-        await tableServiceClient.CreateTableIfNotExistsAsync(_settings.BooksTableName, cancellationToken);
-        var tableClient = tableServiceClient.GetTableClient(_settings.BooksTableName);
+        var tableClient = await CreateTableClient(AzureSettings.BooksTableName, cancellationToken);
         
         BookEntity bookEntity = new()
         {
@@ -32,8 +30,7 @@ public class TableStorageBooksRepository(TableServiceClient tableServiceClient, 
 
     public async Task<ErrorOr<Book>> GetBook(int id, CancellationToken cancellationToken)
     {
-        await tableServiceClient.CreateTableIfNotExistsAsync(_settings.BooksTableName, cancellationToken);
-        var tableClient = tableServiceClient.GetTableClient(_settings.BooksTableName);
+        var tableClient = await CreateTableClient(AzureSettings.BooksTableName, cancellationToken);
         
         var bookEntity = await tableClient.GetEntityIfExistsAsync<BookEntity>(PartitionKey, id.ToString(), cancellationToken: cancellationToken);
         if (bookEntity is not { HasValue: true })
@@ -53,8 +50,7 @@ public class TableStorageBooksRepository(TableServiceClient tableServiceClient, 
 
     public async Task<IEnumerable<Book>> GetBooks(CancellationToken cancellationToken)
     {
-        await tableServiceClient.CreateTableIfNotExistsAsync(_settings.BooksTableName, cancellationToken);
-        var tableClient = tableServiceClient.GetTableClient(_settings.BooksTableName);
+        var tableClient = await CreateTableClient(AzureSettings.BooksTableName, cancellationToken);
         
         var books = new List<Book>();
         
