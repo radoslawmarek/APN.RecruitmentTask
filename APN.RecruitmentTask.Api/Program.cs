@@ -1,11 +1,14 @@
 using System.Text;
 using APN.RecruitmentTask.Api.Endpoints;
+using APN.RecruitmentTask.Api.Settings;
 using APN.RecruitmentTask.Application;
 using APN.RecruitmentTask.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<Features>(builder.Configuration.GetSection("Features"));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

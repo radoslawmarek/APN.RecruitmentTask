@@ -1,6 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using APN.RecruitmentTask.Api.Settings;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace APN.RecruitmentTask.Api.Endpoints;
@@ -11,8 +14,15 @@ public static class AuthenticationEndpoint
     
     public static void AddAuthenticationEndpoints(this WebApplication application)
     {
-        application.MapGet("/api/token", () =>
+        application.MapGet("/api/token", ([FromServices]IOptions<Features> featuresOptions) =>
         {
+            var features = featuresOptions.Value;
+            
+            if (features.CanGenerateToken == false)
+            {
+                return Results.Forbid();
+            }
+            
             var secretKey = application.Configuration["Authentication:SecretKey"];
             if (string.IsNullOrEmpty(secretKey))
             {
