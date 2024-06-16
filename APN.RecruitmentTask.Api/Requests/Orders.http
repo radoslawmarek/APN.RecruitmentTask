@@ -1,0 +1,18 @@
+### Gets all orders
+GET {{hostUrl}}/api/orders
+Authorization: Bearer {{bearerToken}}
+Accept: application/json
+
+### Adds order
+POST {{hostUrl}}/api/orders
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "orderLines": [
+      { "bookId": 29, "quantity": 10 },
+      { "bookId": 30, "quantity": 15 },
+      { "bookId": 31, "quantity": 20 }
+  ]
+}

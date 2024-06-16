@@ -50,11 +50,23 @@ public class TableStorageBooksRepository(TableServiceClient tableServiceClient, 
 
     public async Task<IEnumerable<Book>> GetBooks(CancellationToken cancellationToken)
     {
+        var filter = $"PartitionKey eq '{PartitionKey}'";
+        return await GetBooksByFilter(filter, cancellationToken);
+    }
+
+    public async Task<IEnumerable<Book>> GetBooksByIds(IEnumerable<int> ids, CancellationToken cancellationToken)
+    {
+        var filter = string.Join(" or ", ids.Select(id => $"(PartitionKey eq '{PartitionKey}' and RowKey eq '{id}')"));
+        return await GetBooksByFilter(filter, cancellationToken);
+    }
+
+    private async Task<IEnumerable<Book>> GetBooksByFilter(string filter, CancellationToken cancellationToken)
+    {
         var tableClient = await CreateTableClient(AzureSettings.BooksTableName, cancellationToken);
         
         var books = new List<Book>();
         
-        await foreach (var bookEntity in tableClient.QueryAsync<BookEntity>(filter: $"PartitionKey eq '{PartitionKey}'", cancellationToken: cancellationToken))
+        await foreach (var bookEntity in tableClient.QueryAsync<BookEntity>(filter, cancellationToken: cancellationToken))
         {
             var book = JsonSerializer.Deserialize<Book>(bookEntity.BookSerializedToJson);
             

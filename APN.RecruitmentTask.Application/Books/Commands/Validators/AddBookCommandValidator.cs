@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace APN.RecruitmentTask.Application.Books.Commands;
+namespace APN.RecruitmentTask.Application.Books.Commands.Validators;
 
 public class AddBookCommandValidator: AbstractValidator<AddBookCommand>
 {

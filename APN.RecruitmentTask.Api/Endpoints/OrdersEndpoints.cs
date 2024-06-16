@@ -1,5 +1,7 @@
+using APN.RecruitmentTask.Application.Orders.Commands;
 using APN.RecruitmentTask.Application.Orders.Queries;
 using APN.RecruitmentTask.Contracts.ApiContracts.Orders;
+using APN.RecruitmentTask.Domain.Order;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,5 +26,29 @@ public static class OrdersEndpoints
             .WithDescription("Get list of orders")
             .WithTags(EndpointTags)
             .Produces<IEnumerable<OrderQueryResult>>();
+        
+        application.MapPost("/api/orders", [Authorize] async ([FromServices] IMediator mediator, CreateOrderRequest request) =>
+            {
+                var command = new AddOrderCommand
+                {
+                    OrderLines = request.OrderLines.Select(x => new OrderLine
+                        {
+                            BookId = x.BookId,
+                            Quantity = x.Quantity
+                        }
+                   )
+                };
+                
+                var result = await mediator.Send(command);
+                return result.Match(
+                    orderId => Results.Created($"/api/orders/{orderId}", orderId),
+                    errors => Results.BadRequest(string.Join(", ", errors.Select(e => e.Description))
+                    )
+                );
+            })
+            .WithName("AddOrder")
+            .WithDescription("Add new order")
+            .WithTags(EndpointTags)
+            .Produces<Guid>();
     }
 }

@@ -20,7 +20,7 @@ public class TableStorageUniqueIdGenerator(TableServiceClient tableServiceClient
         await tableServiceClient.CreateTableIfNotExistsAsync(_settings.IdGeneration.TableName, cancellationToken);
         var tableClient = tableServiceClient.GetTableClient(_settings.IdGeneration.TableName);
 
-        for (int counter = 0; counter < 10; counter++)
+        while (true)
         {
             try
             {
@@ -54,7 +54,5 @@ public class TableStorageUniqueIdGenerator(TableServiceClient tableServiceClient
             
             throw new ApplicationException($"Cannot generate unique id for: {idName}");
         }
-        
-        return await Task.FromResult(1000);
     }
 }
