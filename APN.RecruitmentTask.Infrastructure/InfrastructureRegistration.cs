@@ -23,7 +23,7 @@ public static class InfrastructureRegistration
         
         services.AddAzureClients(clientBuilder =>
         {
-            clientBuilder.AddTableServiceClient("UseDevelopmentStorage=true");
+            clientBuilder.AddTableServiceClient(azureSettings.StorageAccountConnectionString);
             clientBuilder.UseCredential(new DefaultAzureCredential());
         });
     }
